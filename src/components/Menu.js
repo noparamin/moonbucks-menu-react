@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import MenuTitle from "./MenuTitle";
 import InputBox from "./InputBox";
 import MenuList from "./MenuList";
@@ -34,8 +34,8 @@ function Menu() {
     // };
 
     return (
-        <div>
-            <main>
+        <div className="menu-container">
+            <main className="main">
                 <MenuTitle/>
                 <InputBox/>
                 <MenuList/>

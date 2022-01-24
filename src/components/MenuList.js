@@ -2,8 +2,9 @@ import React from "react";
 import MenuItem from "./MenuItem";
 function MenuList() {
     return (
-        <div>
-            <ul>
+        <div className="menu-list">
+            <ul className="menu-list-ul">
+                <MenuItem />
                 <MenuItem />
             </ul>
         </div>

@@ -3,8 +3,8 @@ import React from "react";
 function InputBox() {
     return (
         <div className="menu-input-box">
-            <label hidden>메뉴 이름</label>
-            <input type="text" placeholder="메뉴 이름" ></input>
+            <label hidden className="label">메뉴 이름</label>
+            <input type="text" placeholder="메뉴 이름" className="input"></input>
             <button type="submit" className="menu-input-box-add-btn">확인</button>
         </div>
     );

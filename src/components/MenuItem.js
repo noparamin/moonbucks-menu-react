@@ -2,13 +2,13 @@ import React from "react";
 
 function MenuItem() {
     return (
-        <li>
-            <span>Item</span>
-            <button>품절</button>
-            <button>
+        <li className="menu-item">
+            <span className="menu-item-name">Item</span>
+            <button className="item-sold-out-btn">품절</button>
+            <button className="item-edit-btn">
                 수정
             </button>
-            <button>삭제</button>
+            <button className="item-remove-btn">삭제</button>
         </li>
     );
 }
