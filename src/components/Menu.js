@@ -1,45 +1,53 @@
 import { React, useState } from "react";
+import MenuTitle from "./MenuTitle";
+import InputBox from "./InputBox";
+import MenuList from "./MenuList";
+
 
 function Menu() {
-    const [menuName, setMenuName] = useState("");
-    const [menuList, setMenuList] = useState([]);
+    // const [menuName, setMenuName] = useState("");
+    // const [menuList, setMenuList] = useState([]);
     
-    const onChange = (event) => {
-        setMenuName(event.target.value);
-    };
+    // const onChange = (event) => {
+    //     setMenuName(event.target.value);
+    // };
     
-    const onSubmit = (event) => {
-        event.preventDefault();
-        if(menuName === "") {
-            return;
-        }
+    // const onSubmit = (event) => {
+    //     event.preventDefault();
+    //     if(menuName === "") {
+    //         return;
+    //     }
 
-        setMenuList((currentArray) => [...currentArray, menuName]);
-        setMenuName("");
-    };
+    //     setMenuList((currentArray) => [...currentArray, menuName]);
+    //     setMenuName("");
+    // };
+
+    // const onClickLiButton = (event) => {
+    //     //const updatedMenuName = prompt("메뉴명을 수정하세요");
+    //     console.log(event.target.classList);
+    //     if(event.target.classList.contains("menu-edit-button")) {
+    //     }
+    // };
+
+    // const deleteMenuName = (item) => {
+    //     console.log(item);
+    // };
 
     return (
         <div>
             <main>
-                <div>
-                    <h2>☕ 에스프레소 메뉴 관리</h2>
-                    <span>총 0개</span>
-                </div>
-                
-                <form onSubmit={onSubmit}> 
-                    <label hidden>메뉴 이름</label>
-                    <input type="text" placeholder="메뉴 이름" value={menuName} onChange={onChange}></input>
-                    <button>확인</button>
-                </form>
-                <ul>{menuList.map((item, index) => (
-                    <li key={index}>{item}</li>
-                    ))}
-                </ul>
+                <MenuTitle/>
+                <InputBox/>
+                <MenuList/>
             </main>
         </div>
     );
 }
-// 메뉴판 만들기
+
+// Nav
+// MenuHeader
+// inputBox
+// itemList
 
 // 메뉴이름 입력 후 엔터 또는 확인 버튼 클릭하면 메뉴 추가
 // input은 빈 값으로 초기화
