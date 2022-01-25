@@ -1,44 +1,18 @@
-import { React } from "react";
+import { React, useState } from "react";
 import MenuTitle from "./MenuTitle";
 import InputBox from "./InputBox";
 import MenuList from "./MenuList";
 
 
 function Menu() {
-    // const [menuName, setMenuName] = useState("");
-    // const [menuList, setMenuList] = useState([]);
-    
-    // const onChange = (event) => {
-    //     setMenuName(event.target.value);
-    // };
-    
-    // const onSubmit = (event) => {
-    //     event.preventDefault();
-    //     if(menuName === "") {
-    //         return;
-    //     }
-
-    //     setMenuList((currentArray) => [...currentArray, menuName]);
-    //     setMenuName("");
-    // };
-
-    // const onClickLiButton = (event) => {
-    //     //const updatedMenuName = prompt("메뉴명을 수정하세요");
-    //     console.log(event.target.classList);
-    //     if(event.target.classList.contains("menu-edit-button")) {
-    //     }
-    // };
-
-    // const deleteMenuName = (item) => {
-    //     console.log(item);
-    // };
+    const [menuList, setMenuList] = useState([]);
 
     return (
         <div className="menu-container">
             <main className="main">
-                <MenuTitle/>
-                <InputBox/>
-                <MenuList/>
+                <MenuTitle menuList={menuList}/>
+                <InputBox menuList={menuList} setMenuList={setMenuList}/>
+                <MenuList menuList={menuList} setMenuList={setMenuList}/>
             </main>
         </div>
     );

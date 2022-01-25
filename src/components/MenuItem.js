@@ -1,9 +1,9 @@
 import React from "react";
 
-function MenuItem() {
+function MenuItem({menuItem}) {
     return (
         <li className="menu-item">
-            <span className="menu-item-name">Item</span>
+            <span className="menu-item-name">{menuItem}</span>
             <button className="item-sold-out-btn">품절</button>
             <button className="item-edit-btn">
                 수정
