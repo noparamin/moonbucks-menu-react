@@ -1,16 +1,18 @@
 import React from "react";
 import MenuItem from "./MenuItem";
+import PropTypes from "prop-types";
+
 function MenuList({ menuList, setMenuList }) {
     return (
         <div className="menu-list">
             <ul className="menu-list-ul">
                 {
-                    menuList && menuList.map((menuItem) => (
+                    menuList && menuList.map((menuItem, index) => (
                         <MenuItem
-                            key={menuItem.id}
+                            key={index}
                             menuItem={menuItem}
-                            // menuList={menuList}
-                            // setMenuList={setMenuList}
+                            menuList={menuList}
+                            setMenuList={setMenuList}
                         />
                     ))
                 }
@@ -18,5 +20,10 @@ function MenuList({ menuList, setMenuList }) {
         </div>
     );
 }
+
+MenuList.propTypes = {
+    menuList: PropTypes.arrayOf.isRequired,
+    setMenuList: PropTypes.func.isRequired
+};
 
 export default MenuList;

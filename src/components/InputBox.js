@@ -1,4 +1,5 @@
 import {React, useState} from "react";
+import PropTypes from "prop-types";
 
 function InputBox({ menuList, setMenuList }) {
     const [menuName, setMenuName] = useState("");
@@ -25,7 +26,7 @@ function InputBox({ menuList, setMenuList }) {
     const onClickAdd = (e) => {
         addMenuName(e);
     };
-    
+
     return (
         <div className="menu-input-box">
             <form>
@@ -33,12 +34,14 @@ function InputBox({ menuList, setMenuList }) {
                 <input type="text" placeholder="메뉴 이름" className="input" value={menuName} onChange={onChangeInput} onKeyPress={onEnterCheck}></input>
                 <button type="submit" className="menu-input-box-add-btn" onClick={onClickAdd}>확인</button>
             </form>
-            {/* <label hidden className="label">메뉴 이름</label>
-            <input type="text" placeholder="메뉴 이름" className="input" value={menuName} onChange={onChangeInput}></input>
-            <button type="submit" className="menu-input-box-add-btn" onClick={onClickAdd}>확인</button> */}
         </div>
     );
 }
+
+InputBox.propTypes = {
+    menuList: PropTypes.arrayOf.isRequired,
+    setMenuList: PropTypes.func.isRequired
+};
 
 export default InputBox;
 
