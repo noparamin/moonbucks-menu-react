@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import store from "../store/index";
 
 function MenuItem({menuItem, menuList, setMenuList}) {
-
     const onClickUpdate = () => {
         const updatedMenu = prompt("메뉴를 수정하세요", menuItem);
         if(updatedMenu === menuItem || updatedMenu === "" || updatedMenu === null) {
@@ -13,12 +13,14 @@ function MenuItem({menuItem, menuList, setMenuList}) {
             menuItem === item ? updatedMenu : item
         );
         setMenuList(updateList);
+        store.setLocalStorage(updateList);
     };
 
     const onClickDelete = () => {
         if(window.confirm("메뉴를 삭제하시겠습니까?")) {
             const newList = menuList.filter(item => menuItem !== item);
             setMenuList(newList);
+            store.setLocalStorage(newList);
         }
     };
 
@@ -41,3 +43,5 @@ MenuItem.propTypes = {
 };
 
 export default MenuItem;
+
+

@@ -1,8 +1,10 @@
-import React from "react";
+import {React, useEffect} from "react";
 import MenuItem from "./MenuItem";
 import PropTypes from "prop-types";
+import store from "../store/index";
 
 function MenuList({ menuList, setMenuList }) {
+
     return (
         <div className="menu-list">
             <ul className="menu-list-ul">

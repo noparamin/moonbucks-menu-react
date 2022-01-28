@@ -1,8 +1,14 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import PropTypes from "prop-types";
+import store from "../store/index";
 
 function InputBox({ menuList, setMenuList }) {
     const [menuName, setMenuName] = useState("");
+
+    useEffect(() => {
+      store.setLocalStorage(menuList);
+    }, [menuList]);
+    
 
     const onChangeInput = (e) => {
         setMenuName(e.target.value);
@@ -13,6 +19,7 @@ function InputBox({ menuList, setMenuList }) {
             return;
         }
         e.preventDefault();
+        
         setMenuList((currentArray) => [...currentArray, menuName]);
         setMenuName("");
     };
@@ -44,5 +51,3 @@ InputBox.propTypes = {
 };
 
 export default InputBox;
-
-//value={menuName} onChange={onChange}
