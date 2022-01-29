@@ -20,7 +20,7 @@ function InputBox({ menuList, setMenuList }) {
         }
         e.preventDefault();
         
-        setMenuList((currentArray) => [...currentArray, menuName]);
+        setMenuList((currentArray) => [...currentArray, {name: menuName, soldOut: false}]);
         setMenuName("");
     };
 

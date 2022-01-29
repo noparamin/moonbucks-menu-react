@@ -3,14 +3,23 @@ import PropTypes from "prop-types";
 import store from "../store/index";
 
 function MenuItem({menuItem, menuList, setMenuList}) {
+    const onClickSoldOut = () => {
+        menuItem.soldOut = !menuItem.soldOut;
+        const updateList = menuList.map((item) =>
+            menuItem.name === item.name ? {name: item.name, soldOut: menuItem.soldOut} : {name: item.name, soldOut: item.soldOut} 
+        );
+        setMenuList(updateList);
+        store.setLocalStorage(updateList);
+    };
+
     const onClickUpdate = () => {
-        const updatedMenu = prompt("메뉴를 수정하세요", menuItem);
-        if(updatedMenu === menuItem || updatedMenu === "" || updatedMenu === null) {
+        const updatedMenu = prompt("메뉴를 수정하세요", menuItem.name);
+        if(updatedMenu === menuItem.name || updatedMenu === "" || updatedMenu === null) {
             return;
         }
 
         const updateList = menuList.map((item) => 
-            menuItem === item ? updatedMenu : item
+            menuItem.name === item.name ? {name: updatedMenu, soldOut: item.soldOut} : {name: item.name, soldOut: item.soldOut}
         );
         setMenuList(updateList);
         store.setLocalStorage(updateList);
@@ -18,7 +27,7 @@ function MenuItem({menuItem, menuList, setMenuList}) {
 
     const onClickDelete = () => {
         if(window.confirm("메뉴를 삭제하시겠습니까?")) {
-            const newList = menuList.filter(item => menuItem !== item);
+            const newList = menuList.filter(item => menuItem.name !== item.name);
             setMenuList(newList);
             store.setLocalStorage(newList);
         }
@@ -26,8 +35,8 @@ function MenuItem({menuItem, menuList, setMenuList}) {
 
     return (
         <li className="menu-item">
-            <span className="menu-item-name">{menuItem}</span>
-            <button className="item-sold-out-btn">품절</button>
+            <span className={"menu-item-name" + (menuItem.soldOut ? "-sold-out" : "")}>{menuItem.name}</span>
+            <button className="item-sold-out-btn" onClick={onClickSoldOut}>품절</button>
             <button onClick={onClickUpdate} className="item-edit-btn">
                 수정
             </button>
