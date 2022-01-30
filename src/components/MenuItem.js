@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import store from "../store/index";
 
-function MenuItem({menuItem, menuList, setMenuList}) {
+function MenuItem({menuItem, menuList, setMenuList, category}) {
     const onClickSoldOut = () => {
         menuItem.soldOut = !menuItem.soldOut;
         const updateList = menuList.map((item) =>
