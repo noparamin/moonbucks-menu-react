@@ -15,21 +15,83 @@ function MenuItem({menuItem, menuList, setMenuList, category}) {
     const onClickUpdate = () => {
         const updatedMenu = prompt("메뉴를 수정하세요", menuItem.name);
         if(updatedMenu === menuItem.name || updatedMenu === "" || updatedMenu === null) {
+            console.log(menuList[category.category]);
             return;
         }
-
-        const updateList = menuList.map((item) => 
+        
+        const currentCategory = category.category;
+        const updateList = menuList[currentCategory].map((item) => 
             menuItem.name === item.name ? {name: updatedMenu, soldOut: item.soldOut} : {name: item.name, soldOut: item.soldOut}
         );
-        setMenuList(updateList);
-        store.setLocalStorage(updateList);
+        if(currentCategory === "espresso") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                espresso : updateList
+            }));
+        }
+        else if(currentCategory === "frappuccino") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                frappuccino : updateList
+            }));
+        }
+        else if(currentCategory === "blended") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                blended : updateList
+            }));
+        }
+        else if(currentCategory === "teavana") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                teavana : updateList
+            }));
+        }
+        else if(currentCategory === "dessert") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                dessert : updateList
+            }));
+        }
+        //setMenuList(updateList);
+        store.setLocalStorage(menuList);
     };
 
     const onClickDelete = () => {
         if(window.confirm("메뉴를 삭제하시겠습니까?")) {
-            const newList = menuList.filter(item => menuItem.name !== item.name);
-            setMenuList(newList);
-            store.setLocalStorage(newList);
+            const currentCategory = category.category;
+            const updateList = menuList[currentCategory].filter(item => menuItem.name !== item.name);
+            if(currentCategory === "espresso") {
+                setMenuList((prevState) => ({
+                    ...prevState,
+                    espresso : updateList
+                }));
+            }
+            else if(currentCategory === "frappuccino") {
+                setMenuList((prevState) => ({
+                    ...prevState,
+                    frappuccino : updateList
+                }));
+            }
+            else if(currentCategory === "blended") {
+                setMenuList((prevState) => ({
+                    ...prevState,
+                    blended : updateList
+                }));
+            }
+            else if(currentCategory === "teavana") {
+                setMenuList((prevState) => ({
+                    ...prevState,
+                    teavana : updateList
+                }));
+            }
+            else if(currentCategory === "dessert") {
+                setMenuList((prevState) => ({
+                    ...prevState,
+                    dessert : updateList
+                }));
+            }
+            store.setLocalStorage(menuList);
         }
     };
 

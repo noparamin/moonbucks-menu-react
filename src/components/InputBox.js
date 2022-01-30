@@ -20,9 +20,41 @@ function InputBox({ menuList, setMenuList, category }) {
         }
         e.preventDefault();
         
-        setMenuList((currentArray) => [...currentArray, {name: menuName, soldOut: false}]);
+        const currentCategory = category.category;
+        // setMenuList((currentArray) => [...currentArray, {name: menuName, soldOut: false}]);
+        if(currentCategory === "espresso") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                espresso : [...prevState.espresso, {name: menuName, soldOut: false}]
+            }));
+        }
+        else if(currentCategory === "frappuccino") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                frappuccino : [...prevState.frappuccino, {name: menuName, soldOut: false}]
+            }));
+        }
+        else if(currentCategory === "blended") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                blended : [...prevState.blended, {name: menuName, soldOut: false}]
+            }));
+        }
+        else if(currentCategory === "teavana") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                teavana : [...prevState.teavana, {name: menuName, soldOut: false}]
+            }));
+        }
+        else if(currentCategory === "dessert") {
+            setMenuList((prevState) => ({
+                ...prevState,
+                dessert : [...prevState.dessert, {name: menuName, soldOut: false}]
+            }));
+        }
         setMenuName("");
     };
+
 
     const onEnterCheck = (e) => {
         if(e.key === "Enter") {

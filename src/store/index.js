@@ -9,7 +9,13 @@ const store = {
             return JSON.parse(localStorage.getItem("menu"));
         }
         else {
-            return [];
+            return {
+                espresso: [],
+                frappuccino: [],
+                blended: [],
+                teavana: [],
+                dessert: []
+            };
         }
     }
 };

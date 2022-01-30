@@ -8,7 +8,7 @@ function MenuList({ menuList, setMenuList, category }) {
         <div className="menu-list">
             <ul className="menu-list-ul">
                 {
-                    menuList && menuList.map((menuItem, index) => (
+                    menuList[category.category] && menuList[category.category].map((menuItem, index) => (
                         <MenuItem
                             key={index}
                             menuItem={menuItem}
