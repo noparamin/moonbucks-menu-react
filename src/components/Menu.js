@@ -3,8 +3,9 @@ import MenuTitle from "./MenuTitle";
 import InputBox from "./InputBox";
 import MenuList from "./MenuList";
 import store from "../store/index";
+import PropTypes from "prop-types";
 
-function Menu({category, setCategory}) {
+function Menu({category}) {
     const [menuList, setMenuList] = useState(store.getLocalStorage());
     
 
@@ -18,5 +19,9 @@ function Menu({category, setCategory}) {
         </div>
     );
 }
+
+Menu.propTypes = {
+    category: PropTypes.object.isRequired
+};
 
 export default Menu;

@@ -24,8 +24,9 @@ function MenuList({ menuList, setMenuList, category }) {
 }
 
 MenuList.propTypes = {
-    menuList: PropTypes.arrayOf.isRequired,
-    setMenuList: PropTypes.func.isRequired
+    menuList: PropTypes.object.isRequired,
+    setMenuList: PropTypes.func.isRequired,
+    category: PropTypes.object.isRequired
 };
 
 export default MenuList;

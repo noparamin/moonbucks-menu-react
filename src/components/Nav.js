@@ -1,4 +1,6 @@
-function Nav({category, setCategory}) {
+import PropTypes from "prop-types";
+
+function Nav({setCategory}) {
 
     const onClickCategory = (e) => {
         if(e.target.innerHTML === "☕ 에스프레소") {
@@ -33,5 +35,9 @@ function Nav({category, setCategory}) {
         </div>
     );
 }
+
+Nav.propTypes = {
+    setCategory: PropTypes.func.isRequired
+};
 
 export default Nav;

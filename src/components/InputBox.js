@@ -20,8 +20,12 @@ function InputBox({ menuList, setMenuList, category }) {
         }
         e.preventDefault();
         
+        updateMenuList();
+        setMenuName("");
+    };
+
+    const updateMenuList = () => {
         const currentCategory = category.category;
-        // setMenuList((currentArray) => [...currentArray, {name: menuName, soldOut: false}]);
         if(currentCategory === "espresso") {
             setMenuList((prevState) => ({
                 ...prevState,
@@ -52,9 +56,7 @@ function InputBox({ menuList, setMenuList, category }) {
                 dessert : [...prevState.dessert, {name: menuName, soldOut: false}]
             }));
         }
-        setMenuName("");
     };
-
 
     const onEnterCheck = (e) => {
         if(e.key === "Enter") {
@@ -63,6 +65,10 @@ function InputBox({ menuList, setMenuList, category }) {
     };
 
     const onClickAdd = (e) => {
+        if(menuName === "") {
+            alert("메뉴를 입력해주세요!");
+            return;
+        }
         addMenuName(e);
     };
 
@@ -78,8 +84,9 @@ function InputBox({ menuList, setMenuList, category }) {
 }
 
 InputBox.propTypes = {
-    menuList: PropTypes.arrayOf.isRequired,
-    setMenuList: PropTypes.func.isRequired
+    menuList: PropTypes.object.isRequired,
+    setMenuList: PropTypes.func.isRequired,
+    category: PropTypes.object.isRequired
 };
 
 export default InputBox;

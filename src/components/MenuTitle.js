@@ -1,4 +1,5 @@
 import { React } from "react";
+import PropTypes from "prop-types";
 
 function MenuTitle({ menuList, category }) {
     
@@ -10,5 +11,10 @@ function MenuTitle({ menuList, category }) {
     );
 
 }
+
+MenuTitle.propTypes = {
+    menuList: PropTypes.object.isRequired,
+    category: PropTypes.object.isRequired
+};
 
 export default MenuTitle;

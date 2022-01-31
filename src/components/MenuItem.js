@@ -5,11 +5,11 @@ import store from "../store/index";
 function MenuItem({menuItem, menuList, setMenuList, category}) {
     const onClickSoldOut = () => {
         menuItem.soldOut = !menuItem.soldOut;
-        const updateList = menuList.map((item) =>
+        const currentCategory = category.category;
+        const updateList = menuList[currentCategory].map((item) =>
             menuItem.name === item.name ? {name: item.name, soldOut: menuItem.soldOut} : {name: item.name, soldOut: item.soldOut} 
         );
-        setMenuList(updateList);
-        store.setLocalStorage(updateList);
+        updateStorage(updateList, currentCategory);
     };
 
     const onClickUpdate = () => {
@@ -23,6 +23,18 @@ function MenuItem({menuItem, menuList, setMenuList, category}) {
         const updateList = menuList[currentCategory].map((item) => 
             menuItem.name === item.name ? {name: updatedMenu, soldOut: item.soldOut} : {name: item.name, soldOut: item.soldOut}
         );
+        updateStorage(updateList, currentCategory);
+    };
+
+    const onClickDelete = () => {
+        if(window.confirm("메뉴를 삭제하시겠습니까?")) {
+            const currentCategory = category.category;
+            const updateList = menuList[currentCategory].filter(item => menuItem.name !== item.name);
+            updateStorage(updateList, currentCategory);
+        }
+    };
+
+    const updateStorage = (updateList, currentCategory) => {
         if(currentCategory === "espresso") {
             setMenuList((prevState) => ({
                 ...prevState,
@@ -53,46 +65,7 @@ function MenuItem({menuItem, menuList, setMenuList, category}) {
                 dessert : updateList
             }));
         }
-        //setMenuList(updateList);
         store.setLocalStorage(menuList);
-    };
-
-    const onClickDelete = () => {
-        if(window.confirm("메뉴를 삭제하시겠습니까?")) {
-            const currentCategory = category.category;
-            const updateList = menuList[currentCategory].filter(item => menuItem.name !== item.name);
-            if(currentCategory === "espresso") {
-                setMenuList((prevState) => ({
-                    ...prevState,
-                    espresso : updateList
-                }));
-            }
-            else if(currentCategory === "frappuccino") {
-                setMenuList((prevState) => ({
-                    ...prevState,
-                    frappuccino : updateList
-                }));
-            }
-            else if(currentCategory === "blended") {
-                setMenuList((prevState) => ({
-                    ...prevState,
-                    blended : updateList
-                }));
-            }
-            else if(currentCategory === "teavana") {
-                setMenuList((prevState) => ({
-                    ...prevState,
-                    teavana : updateList
-                }));
-            }
-            else if(currentCategory === "dessert") {
-                setMenuList((prevState) => ({
-                    ...prevState,
-                    dessert : updateList
-                }));
-            }
-            store.setLocalStorage(menuList);
-        }
     };
 
     return (
@@ -108,9 +81,10 @@ function MenuItem({menuItem, menuList, setMenuList, category}) {
 }
 
 MenuItem.propTypes = {
-    menuItem: PropTypes.string.isRequired,
-    menuList: PropTypes.arrayOf.isRequired,
-    setMenuList: PropTypes.func.isRequired
+    menuItem: PropTypes.object.isRequired,
+    menuList: PropTypes.object.isRequired,
+    setMenuList: PropTypes.func.isRequired,
+    category: PropTypes.object.isRequired
 };
 
 export default MenuItem;
