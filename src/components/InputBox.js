@@ -58,12 +58,6 @@ function InputBox({ menuList, setMenuList, category }) {
         }
     };
 
-    const onEnterCheck = (e) => {
-        if(e.key === "Enter") {
-            addMenuName(e);
-        }
-    };
-
     const onClickAdd = (e) => {
         if(menuName === "") {
             alert("메뉴를 입력해주세요!");
@@ -76,7 +70,7 @@ function InputBox({ menuList, setMenuList, category }) {
         <div className="menu-input-box">
             <form>
                 <label hidden className="label">메뉴 이름</label>
-                <input type="text" placeholder="메뉴 이름" className="input" value={menuName} onChange={onChangeInput} onKeyPress={onEnterCheck}></input>
+                <input type="text" placeholder="메뉴 이름" className="input" value={menuName} onChange={onChangeInput}></input>
                 <button type="submit" className="menu-input-box-add-btn" onClick={onClickAdd}>확인</button>
             </form>
         </div>
